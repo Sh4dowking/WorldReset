@@ -14,7 +14,7 @@ public final class Constants {
     
     // Plugin Information
     public static final String PLUGIN_NAME = "WorldResetter";
-    public static final String PLUGIN_VERSION = "1.0.0";
+    public static final String PLUGIN_VERSION = "1.0.1";
     public static final String PLUGIN_PREFIX = "§7[§bWorldResetter§7]§r ";
     
     // Server Configuration
@@ -80,7 +80,9 @@ public final class Constants {
         "uid.dat"
     };
     
-    // Process Kill Patterns
+    // Legacy process patterns - no longer used (kept for compatibility)
+    // The new implementation uses directory-specific process detection
+    @Deprecated
     public static final String[] JAVA_PROCESS_PATTERNS = {
         "java.*paper.*jar",
         "java.*server.jar", 

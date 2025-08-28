@@ -15,6 +15,7 @@ WorldResetter allows server administrators to completely reset all worlds (Overw
 - 📝 **Detailed Logging**: Comprehensive logging with organized log files
 - ⚙️ **Process Independence**: Scripts run independently to prevent process termination issues
 - 🎯 **Professional Architecture**: Clean, modular code structure ready for production
+- 🛡️ **Multi-Server Safe**: Only affects the specific server instance, won't interfere with other running servers or proxies
 
 ## Installation
 
@@ -189,6 +190,13 @@ All logs are organized in the `logs/` directory:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Changelog
+
+### Version 1.0.1 (Latest)
+- **🔧 CRITICAL FIX**: Modified process cleanup to only target the specific server instance
+- **🛡️ Multi-Server Safety**: No longer kills Java processes from other Minecraft servers/proxies
+- **📍 Directory-Specific Targeting**: Process cleanup now uses current directory matching for precision  
+- **🔒 Enhanced Security**: Prevents accidental shutdown of other running servers (Velocity proxies, etc.)
+- **💡 Improved Logic**: Replaced broad `pkill` patterns with precise PID-based process management
 
 ### Version 1.0.0
 - Initial release

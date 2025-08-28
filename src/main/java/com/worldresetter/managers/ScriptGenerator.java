@@ -144,6 +144,7 @@ public class ScriptGenerator {
     
     /**
      * Appends the process cleanup section to handle server shutdown.
+     * Only kills Java processes running from the current server directory.
      * 
      * @param script The StringBuilder to append to
      */
@@ -154,14 +155,34 @@ public class ScriptGenerator {
               .append("    echo 'Waiting for server to fully shut down...'\n")
               .append("    sleep ").append(Constants.PROCESS_CLEANUP_DELAY).append("\n")
               .append("\n")
-              .append("    # Kill any remaining Java processes (allow failures)\n")
-              .append("    echo 'Ensuring all server processes are terminated...'\n");
-        
-        for (String pattern : Constants.JAVA_PROCESS_PATTERNS) {
-            script.append("    pkill -f '").append(pattern).append("' 2>/dev/null || echo 'No ").append(pattern).append(" processes found'\n");
-        }
-        
-        script.append("    sleep ").append(Constants.FORCE_KILL_DELAY).append("\n")
+              .append("    # Kill only Java processes running from this specific directory (allow failures)\n")
+              .append("    echo 'Ensuring server processes from this directory are terminated...'\n")
+              .append("    \n")
+              .append("    # Get current working directory for precise process matching\n")
+              .append("    CURRENT_DIR=\"$(pwd)\"\n")
+              .append("    echo \"Looking for Java processes running from: $CURRENT_DIR\"\n")
+              .append("    \n")
+              .append("    # Find Java processes running from current directory and kill them\n")
+              .append("    # This is much more precise than using broad pkill patterns\n")
+              .append("    for pid in $(ps aux | grep java | grep -E '(paper.*jar|server\\.jar)' | grep \"$CURRENT_DIR\" | grep -v grep | awk '{print $2}'); do\n")
+              .append("        if [ ! -z \"$pid\" ]; then\n")
+              .append("            echo \"Found Java server process (PID: $pid) running from current directory\"\n")
+              .append("            if kill \"$pid\" 2>/dev/null; then\n")
+              .append("                echo \"✓ Gracefully terminated process $pid\"\n")
+              .append("                sleep 2\n")
+              .append("                # Force kill if still running\n")
+              .append("                if kill -0 \"$pid\" 2>/dev/null; then\n")
+              .append("                    echo \"Process $pid still running, force killing...\"\n")
+              .append("                    kill -9 \"$pid\" 2>/dev/null && echo \"✓ Force killed process $pid\" || echo \"✗ Failed to force kill process $pid\"\n")
+              .append("                fi\n")
+              .append("            else\n")
+              .append("                echo \"✗ Failed to kill process $pid (may already be dead)\"\n")
+              .append("            fi\n")
+              .append("        fi\n")
+              .append("    done\n")
+              .append("    \n")
+              .append("    echo \"Process cleanup completed\"\n")
+              .append("    sleep ").append(Constants.FORCE_KILL_DELAY).append("\n")
               .append("\n");
     }
     
