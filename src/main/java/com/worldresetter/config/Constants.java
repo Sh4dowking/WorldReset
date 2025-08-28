@@ -15,7 +15,7 @@ public final class Constants {
     // Plugin Information
     public static final String PLUGIN_NAME = "WorldResetter";
     public static final String PLUGIN_VERSION = "1.0.1";
-    public static final String PLUGIN_PREFIX = "§7[§bWorldResetter§7]§r ";
+    public static final String PLUGIN_PREFIX = "§7[§fWorldResetter§7]§r ";
     
     // Server Configuration
     public static final String SERVER_DIR = "/home/ubuntu/MinecraftServer/TestingServer_Paper_1_21_8";
@@ -56,7 +56,7 @@ public final class Constants {
         public static final String RESET_COMMAND_HINT = "§eType §f/worldreset confirm §eto proceed with the world reset.";
         public static final String RESET_INITIATED = "§c§l⚠ WORLD RESET INITIATED ⚠";
         public static final String RESET_BROADCAST = "§cAll worlds are being deleted and the server will restart!";
-        public static final String REJOIN_MESSAGE = "§eYou can try rejoining in ~30 seconds...";
+        public static final String REJOIN_MESSAGE = "§cYou can try rejoining in ~30 seconds...";
     }
     
     // File Patterns for Cleanup

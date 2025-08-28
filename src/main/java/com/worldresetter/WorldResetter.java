@@ -150,9 +150,9 @@ public class WorldResetter extends JavaPlugin {
      * @param sender The command sender to send warnings to
      */
     private void sendWorldResetWarning(CommandSender sender) {
-        sender.sendMessage(Constants.PLUGIN_PREFIX + Constants.Messages.RESET_WARNING);
-        sender.sendMessage(Constants.PLUGIN_PREFIX + Constants.Messages.RESET_CONFIRMATION);
-        sender.sendMessage(Constants.PLUGIN_PREFIX + Constants.Messages.RESET_COMMAND_HINT);
+        sender.sendMessage(Constants.Messages.RESET_WARNING);
+        sender.sendMessage(Constants.Messages.RESET_CONFIRMATION);
+        sender.sendMessage(Constants.Messages.RESET_COMMAND_HINT);
         
         LoggerUtil.info("World reset warning displayed to " + sender.getName());
     }
@@ -196,9 +196,9 @@ public class WorldResetter extends JavaPlugin {
      * Broadcasts world reset messages to all online players.
      */
     private void broadcastResetMessages() {
-        Bukkit.broadcastMessage(Constants.PLUGIN_PREFIX + Constants.Messages.RESET_INITIATED);
-        Bukkit.broadcastMessage(Constants.PLUGIN_PREFIX + Constants.Messages.RESET_BROADCAST);
-        Bukkit.broadcastMessage(Constants.PLUGIN_PREFIX + Constants.Messages.REJOIN_MESSAGE);
+        Bukkit.broadcastMessage(Constants.Messages.RESET_INITIATED);
+        Bukkit.broadcastMessage(Constants.Messages.RESET_BROADCAST);
+        Bukkit.broadcastMessage(Constants.Messages.REJOIN_MESSAGE);
         
         LoggerUtil.info("World reset messages broadcasted to all players");
     }
