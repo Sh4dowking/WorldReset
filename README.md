@@ -19,7 +19,7 @@ WorldResetter allows server administrators to completely reset all worlds (Overw
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/Sh4dowking/WorldReset/releases) page.  
+1. Download the latest `WorldResetter.jar` version from the [Releases](https://github.com/Sh4dowking/WorldReset/releases) page.  
 2. Place it in your server's `plugins/` directory
 3. Restart your server
 4. Grant permissions to administrators (see [Permissions](#permissions))
