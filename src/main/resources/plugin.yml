@@ -1,0 +1,30 @@
+name: WorldResetter
+version: 1.0.0
+description: Professional world reset functionality for Minecraft servers
+author: Sh4dowking
+website: https://github.com/Sh4dowking/WorldReset
+main: com.worldresetter.WorldResetter
+
+api-version: 1.21
+
+commands:
+  worldreset:
+    description: Reset all worlds and restart the server
+    usage: |
+      /<command> - Show reset warning and instructions
+      /<command> confirm - Execute the world reset process
+    permission: worldresetter.admin
+    permission-message: You don't have permission to use this command!
+
+permissions:
+  worldresetter.*:
+    description: Grants all WorldResetter permissions
+    children:
+      worldresetter.admin: true
+    default: op
+  worldresetter.admin:
+    description: Access to world reset commands
+    default: op
+
+depend: []
+softdepend: []
